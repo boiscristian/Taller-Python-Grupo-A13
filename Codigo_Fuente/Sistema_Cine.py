@@ -1,3 +1,6 @@
+# Sistema de reservas de cine
+#El sistema deberá administrar reservas de entradas para funciones de cine. Podrá contemplar selección de películas, horarios disponibles, cantidad de entradas, control de capacidad de salas, promociones y cálculo de importes.
+#La solución podrá incorporar estadísticas básicas relacionadas con películas más elegidas, horarios con mayor demanda o cantidad total de entradas vendidas.
 
 # TRABAJO Laboratorio de Python - ALGORITMOS Y ESTRUCTURAS DE DATOS 2026
 # ESCENARIO 2: SISTEMA DE RESERVAS DE CINE (DATOS REALES CINEMACENTER)
@@ -23,6 +26,11 @@ p1_h2_formato = "2D"
 p1_h2_capacidad = 50
 p1_h2_vendidas = 0
 
+p1_h3_info = "20:30 (2D)"
+p1_h3_formato = "2D"
+p1_h3_capacidad = 50
+p1_h3_vendidas = 0
+
 # Pelicula 2: Toy Story 5 (Tiene una funcion 2D y una 3D)
 p2_h1_info = "18:00 (2D)"
 p2_h1_formato = "2D"
@@ -47,7 +55,7 @@ total_recaudado = 0.0
 ventas_peli1 = 0
 ventas_peli2 = 0
 ventas_peli3 = 0
-
+           
 
 # --- PROGRAMA PRINCIPAL ---
 
@@ -74,3 +82,80 @@ def menu_principal():
 
 if __name__ == "__main__":
     menu_principal()
+
+
+# --- FUNCION DE RESERVA DE ENTRADAS ---
+def reservar_entradas():
+    global total_entradas_vendidas, total_recaudado
+    global ventas_peli1, ventas_peli2, ventas_peli3
+
+    print("\n--- RESERVA DE ENTRADAS ---")
+    print("Seleccione la pelicula:")
+    print("1. " + peli1_nombre)
+    print("2. " + peli2_nombre)
+    print("3. " + peli3_nombre)
+    
+    pelicula_opc = int(input("Ingrese el numero de la pelicula (1-3): "))
+    
+    if pelicula_opc < 1 or pelicula_opc > 3:
+        print("Error: Opcion invalida. Ingrese un numero entre 1 y 3.")
+        return
+    
+    if pelicula_opc == 1:
+        print("\nFunciones disponibles para " + peli1_nombre + ":")
+        print("1. " + p1_h1_info)
+        print("2. " + p1_h2_info)
+        print("3. " + p1_h3_info)
+        funcion_opc = int(input("Seleccione la funcion (1-3): "))
+        
+        if funcion_opc == 1:
+            if p1_h1_vendidas < p1_h1_capacidad:
+                cantidad = int(input("Ingrese la cantidad de entradas a reservar: "))
+                if cantidad <= (p1_h1_capacidad - p1_h1_vendidas):
+                    p1_h1_vendidas += cantidad
+                    total_entradas_vendidas += cantidad
+                    total_recaudado += cantidad * precio_2d
+                    ventas_peli1 += cantidad
+                    print(f"Reserva exitosa! Total a pagar: ${cantidad * precio_2d}")
+                else:
+                    print("Error: No hay suficientes entradas disponibles.")
+            else:
+                print("Error: Funcion completa.")
+        elif funcion_opc == 2:
+            if p1_h2_vendidas < p1_h2_capacidad:
+                cantidad = int(input("Ingrese la cantidad de entradas a reservar: "))
+                if cantidad <= (p1_h2_capacidad - p1_h2_vendidas):
+                    p1_h2_vendidas += cantidad
+                    total_entradas_vendidas += cantidad
+                    total_recaudado += cantidad * precio_2d
+                    ventas_peli1 += cantidad
+                    print(f"Reserva exitosa! Total a pagar: ${cantidad * precio_2d}")
+                else:
+                    print("Error: No hay suficientes entradas disponibles.")
+            else:
+                print("Error: Funcion completa.")
+        elif funcion_opc == 3:
+            if p1_h3_vendidas < p1_h3_capacidad:
+                cantidad = int(input("Ingrese la cantidad de entradas a reservar: "))
+                if cantidad <= (p1_h3_capacidad - p1_h3_vendidas):
+                    p1_h3_vendidas += cantidad
+                    total_entradas_vendidas += cantidad
+                    total_recaudado += cantidad * precio_2d
+                    ventas_peli1 += cantidad
+                    print(f"Reserva exitosa! Total a pagar: ${cantidad * precio_2d}")
+                else:
+                    print("Error: No hay suficientes entradas disponibles.")
+            else:
+                print("Error: Funcion completa.")
+
+
+# --- FUNCION DE ESTADISTICAS ---
+def ver_estadisticas():
+    print("\n--- ESTADISTICAS ---")
+    print(f"Total de entradas vendidas: {total_entradas_vendidas}")
+    print(f"Total recaudado: ${total_recaudado}")
+    
+    print("\nVentas por pelicula:")
+    print(f"{peli1_nombre}: {ventas_peli1} entradas vendidas")
+    print(f"{peli2_nombre}: {ventas_peli2} entradas vendidas")
+    print(f"{peli3_nombre}: {ventas_peli3} entradas vendidas")
