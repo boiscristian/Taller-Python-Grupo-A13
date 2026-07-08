@@ -1,19 +1,14 @@
-# =============================================================================
 # TRABAJO FINAL INTEGRADOR - ALGORITMOS Y ESTRUCTURAS DE DATOS 2026
 # ESCENARIO 2: SISTEMA DE RESERVAS DE CINE (DATOS REALES CINEMACENTER)
-# =============================================================================
 
 # --- AMBIENTE ---
 peli1_nombre = "Minions & Monstruos"
 peli2_nombre = "Toy Story 5"
 peli3_nombre = "Supergirl"
 
-# Precios Base por Formato
 precio_2d = 13000.0
 precio_3d = 14000.0
 
-# Funciones y Horarios Disponibles
-# Pelicula 1: Minions & Monstruos (Solo 2D)
 p1_h1_info = "16:30 (2D)"
 p1_h1_formato = "2D"
 p1_h1_capacidad = 50
@@ -24,7 +19,6 @@ p1_h2_formato = "2D"
 p1_h2_capacidad = 50
 p1_h2_vendidas = 0
 
-# Pelicula 2: Toy Story 5 (Tiene una funcion 2D y una 3D)
 p2_h1_info = "18:00 (2D)"
 p2_h1_formato = "2D"
 p2_h1_capacidad = 50
@@ -35,13 +29,11 @@ p2_h2_formato = "3D"
 p2_h2_capacidad = 40
 p2_h2_vendidas = 0
 
-# Pelicula 3: Supergirl (Solo 2D)
 p3_h1_info = "21:50 (2D)"
 p3_h1_formato = "2D"
 p3_h1_capacidad = 60
 p3_h1_vendidas = 0
 
-# Variables (Contadores y Acumuladores)
 total_entradas_vendidas = 0
 total_recaudado = 0.0
 
@@ -50,7 +42,7 @@ ventas_peli2 = 0
 ventas_peli3 = 0
 
 
-# VALIDACION
+# VALIDACION 
 
 def es_opcion_valida(valor, minimo, maximo):
     return minimo <= valor <= maximo
@@ -104,7 +96,6 @@ def verificar_capacidad(peli, horario, cantidad):
 
 
 def calcular_importe_cinemacenter(peli, horario, cantidad):
-    # 1. Determinar el formato y el precio base de la funcion elegida
     if peli == 1 and horario == 1:
         formato_actual = p1_h1_formato
     elif peli == 1 and horario == 2:
@@ -118,7 +109,6 @@ def calcular_importe_cinemacenter(peli, horario, cantidad):
 
     subtotal_acumulado = 0.0
 
-    # 2. Precios reales de Cinemacenter
     print("\n--- SELECCION DE TARIFAS INDIVIDUALES ---")
     print("Defina la tarifa correspondiente para cada entrada:")
 
@@ -146,7 +136,6 @@ def calcular_importe_cinemacenter(peli, horario, cantidad):
 
         subtotal_acumulado += precio_ticket
 
-    # 3. Descuento extra por cantidad
     if cantidad >= 4:
         descuento_volumen = 0.15
         print("\nDescuento extra aplicado: 15% por compra de 4 o mas entradas.")
@@ -158,6 +147,16 @@ def calcular_importe_cinemacenter(peli, horario, cantidad):
 
     return subtotal_acumulado - (subtotal_acumulado * descuento_volumen)
 
+
+# ARCHIVOS
+
+def guardar_reserva_en_archivo(pelicula, horario_info, cantidad, importe):
+    with open("historial_ventas.txt", "a") as archivo:
+        linea = f"{pelicula},{horario_info},{cantidad},{importe}\n"
+        archivo.write(linea)
+
+
+# LOGICA DEL SISTEMA
 
 def procesar_reserva():
     global p1_h1_vendidas, p1_h2_vendidas, p2_h1_vendidas, p2_h2_vendidas, p3_h1_vendidas
@@ -190,18 +189,27 @@ def procesar_reserva():
             ventas_peli1 += cantidad
             if horario == 1:
                 p1_h1_vendidas += cantidad
+                horario_texto = p1_h1_info
             else:
                 p1_h2_vendidas += cantidad
+                horario_texto = p1_h2_info
+            peli_texto = peli1_nombre
         elif peli == 2:
             ventas_peli2 += cantidad
             if horario == 1:
                 p2_h1_vendidas += cantidad
+                horario_texto = p2_h1_info
             else:
                 p2_h2_vendidas += cantidad
+                horario_texto = p2_h2_info
+            peli_texto = peli2_nombre
         elif peli == 3:
             ventas_peli3 += cantidad
             p3_h1_vendidas += cantidad
+            horario_texto = p3_h1_info
+            peli_texto = peli3_nombre
 
+        guardar_reserva_en_archivo(peli_texto, horario_texto, cantidad, importe_final)
         print("Reserva realizada con exito.")
     else:
         print("Operacion cancelada.")
@@ -225,8 +233,6 @@ def mostrar_estadisticas():
     print("=====================================")
 
 
-# PROGRAMA PRINCIPAL
-
 def menu_principal():
     opc = 0
     while opc != 3:
@@ -243,7 +249,7 @@ def menu_principal():
         elif opc == 2:
             mostrar_estadisticas()
         elif opc == 3:
-            print("\nMuch gracias por utilizar nuestro sistema.")
+            print("\nMuchas gracias por utilizar nuestro sistema.")
 
 
 if __name__ == "__main__":
