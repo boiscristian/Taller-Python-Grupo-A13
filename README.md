@@ -1,12 +1,13 @@
-# Laboratorio de Python: Sistema de Reservas de Cine
+# Trabajo Final Integrador - Laboratorio de Python
 **Asignatura:** Algoritmos y Estructuras de Datos  
 **Carrera:** Ingeniería en Sistemas de Información  
 **Institución:** Universidad Tecnológica Nacional – Facultad Regional Resistencia (UTN FRRe)  
 **Ciclo Lectivo:** 2026  
+**Comisión:** K1.1  
 
 ---
 
-## Integrantes del Grupo - Comisión K1.1
+## Integrantes del Grupo
 * **Bois**, Cristian Gabriel
 * **Comisso Bentz**, Matias Gabriel
 * **Ferreyra**, Valentino
@@ -15,29 +16,43 @@
 
 ---
 
-## Presentación del Proyecto
-Este sistema automatiza el proceso de venta de entradas y control de capacidad para un complejo de cine, adaptando las reglas de negocio a la cartelera y tarifas reales de Cinemacenter Resistencia.
+## Descripción General del Sistema (Escenario 2)
+Este proyecto es un sistema para consola que simula la terminal de autogestión de **Cinemacenter Resistencia** para sacar entradas de cine.
+
+### Qué hace el programa:
+* **Muestra la cartelera real:** Permite elegir entre 3 películas disponibles en formatos 2D y 3D.
+* **Controla los asientos:** El sistema sabe cuántas butacas quedan libres en cada sala y no te deja comprar si ya no hay espacio.
+* **Saca entradas familiares:** Si va una familia, el programa pregunta uno por uno qué tipo de entrada quiere (General, Promo Lunes/Martes, o Menores/Jubilados) para calcular el precio justo de cada integrante.
+* **Aplica descuentos por cantidad:** Si comprás 2 o 3 entradas te hace un 10% de descuento total, y si comprás 4 o más, te hace un 15%.
+* **Guarda todo en un archivo:** Cuando confirmás la compra con la letra "S", los datos se graban automáticamente en un archivo de texto llamado `historial_ventas.txt` para que no se pierdan al cerrar el programa.
 
 ---
 
 ## Estructura del Repositorio
-
-* `/Codigo_Fuente`: Contiene el código ejecutable principal en Python (`sistema_cine.py`).
-* `/Guia_Orientativa`: Contiene el pseudocódigo inicial desarrollado por el equipo como base lógica de orientación antes de iniciar la programación nativa.
+* `/Codigo_Fuente`: Contiene el código en Python (`sistema_cine.py`).
+* `/Guia_Orientativa`: Contiene el pseudocódigo que usamos para organizarnos antes de programar.
 
 ---
 
-## Estado Actual del Desarrollo
+## Instrucciones de Ejecución
 
-El proyecto se encuentra en etapa de construcción colaborativa y progresiva:
+### Qué necesitás:
+* Tener instalado **Python 3.10** o superior en la computadora.
 
-* **Ambiente Inicial Configurado:** Declaración estática de variables independientes para el control de capacidad de salas (formatos 2D y 3D), asignación de precios base de la cartelera real de Cinemacenter y contadores globales para la auditoría de caja.
-* **Interfaz de Consola Funcional:** Implementación del menú principal mediante un bucle de control condicional (`while`), permitiendo la navegación interactiva y el cierre limpio del sistema (Opción 3).
-* **Próximas Integraciones (En desarrollo):** Incorporación de los módulos de validación de entradas por teclado, procesamiento de reservas con quitas promocionales y generación de reportes estadísticos de máximos.
-* **Incorporación de dos nuevas funciones (En desarrollo):** Se incorporaron las funciones "reservar_entradas" y "ver_estadisticas" las cuales cuentan con una estructura básica de como serán con la opción de ser modificadas en caso de ser necesario.
-* **Integración Completa del Sistema:** El menú principal ahora ejecuta correctamente las funciones de reserva y estadísticas, quedando totalmente conectado (en la versión anterior estas funciones existían pero no estaban vinculadas al menú).
-* **Validación de Entradas por Teclado:** Incorporación de las funciones `es_opcion_valida()` y `leer_entero_validado()`, que controlan los rangos permitidos y capturan errores de tipo de dato (`ValueError`), evitando que el sistema se interrumpa ante datos inválidos.
-* **Modularización del Código:** Separación de la lógica en funciones específicas (`mostrar_cartelera`, `mostrar_horarios`, `verificar_capacidad`, `calcular_importe_cinemacenter`, `procesar_reserva`, `mostrar_estadisticas`) para mayor claridad y mantenimiento.
-* **Reserva Funcional para las 3 Películas:** Se completó la lógica de reserva para Toy Story 5 y Supergirl (antes solo disponible para Minions & Monstruos), con control de capacidad por función.
-* **Sistema de Tarifas y Descuentos:** Se agregó selección de tipo de tarifa por entrada (General, Promoción Lunes y Martes, Menores de 12 años/Jubilados) y descuento por volumen de compra (10% en 2-3 entradas, 15% en 4 o más).
-* **Confirmación de Operación:** Se incorporó un paso de confirmación (S/N) antes de registrar la venta y actualizar la caja.
+### Cómo hacerlo andar:
+1. Descargá el archivo `sistema_cine.py` de la carpeta `/Codigo_Fuente`.
+2. Abrí la terminal o consola de comandos en la carpeta donde guardaste el archivo.
+3. Escribí el siguiente comando y apretá Enter:
+   ```bash
+   python sistema_cine.py
+
+---
+
+## Uso de Inteligencia Artificial
+
+Cumpliendo con lo pedido por los profesores, detallamos cómo usamos la IA en este trabajo:
+
+* **¿Qué IA usamos?:** Usamos **Gemini**.
+* **¿Para qué la usamos?:** * Para que nos ayude a encontrar errores cuando el código no corría o cuando nos equivocábamos con los espacios (márgenes) de Python.
+  * Para entender cómo se usaba bien la estructura `with open` para crear y escribir el archivo de texto sin que se rompa.
+* **¿Cómo la usamos?:** Usamos la IA como un tutor: le hacíamos preguntas sobre las dudas que teníamos, leíamos su explicación y después nosotros escribíamos el código en nuestro archivo adaptándolo a los nombres de nuestras variables.
