@@ -56,3 +56,9 @@ Cumpliendo con lo pedido por los profesores, detallamos cómo usamos la IA en es
 * **¿Para qué la usamos?:** * Para que nos ayude a encontrar errores cuando el código no corría o cuando nos equivocábamos con los espacios (márgenes) de Python.
   * Para entender cómo se usaba bien la estructura `with open` para crear y escribir el archivo de texto sin que se rompa.
 * **¿Cómo la usamos?:** Usamos la IA como un tutor: le hacíamos preguntas sobre las dudas que teníamos, leíamos su explicación y después nosotros escribíamos el código en nuestro archivo adaptándolo a los nombres de nuestras variables.
+
+---
+
+## link del video demostrativo
+
+https://drive.google.com/drive/folders/14MaimJLD3V1vOxFZ-smI5Sauc4hOI3o_?usp=sharing
